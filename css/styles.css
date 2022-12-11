@@ -1,0 +1,231 @@
+:root {
+	--bs-primary: #069499;
+	--app-primary-dark: #069499;
+	--bs-primary-rgb: 49,84,175;
+}
+
+html {
+	width: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	background-color: #ffffff;
+	height: 100vh;
+}
+
+footer,header {
+	flex:none;
+}
+
+.main-container {
+	flex: 1 0 auto;
+}
+
+#navMenu {
+	background-color: #069499;
+}
+.navdiv {
+	border-bottom: 2px solid rgb(255, 255, 255);
+}
+
+#heroHeader {
+	background-color: #069499 !important;
+	height: 30vh;
+	margin: auto;
+	border-radius: 4px;
+}
+
+#heroHeader > div {
+	position: inherit;
+	z-index: 2;
+}
+
+.headdiv {
+	text-align: center;
+	margin: auto;
+	justify-content: center;
+}
+.h1 {
+	color: #ffffff;
+}
+footer a {
+	color: #fff;	
+}
+
+main button {
+	background-color: #069499 !important;
+}
+
+.tituloscot {
+	color: #fff !important;
+}
+
+.cardcot {
+	background-color: #069499 !important;
+}
+
+@media (max-width: 768px) {
+	#heroHeader:before {
+		content: '';
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: 35% 65%;
+		background-blend-mode:difference;
+		opacity: 0.45;
+	}
+}
+
+@media (min-width: 768px) {
+	#heroHeader {
+		height: 30vh;
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: right;
+	}
+}
+
+#quotation-list div:nth-child(n+2) {
+	border-top: none !important;
+}
+
+.accordion-header > button:disabled {
+	background-color: #ccc;
+}
+
+.accordion-header > button:enabled {
+	background-color: #fff;
+}
+
+input:disabled{
+	border: 1px solid #ced4da !important;
+}
+
+
+
+.footdiv {
+    background-color: #069499 !important;
+	border-radius: 4px;
+}
+
+
+
+#offcanvas-history-list div:nth-child(n+2) {
+	border-top: none !important;
+	border-top-left-radius: 0 !important;
+	border-top-right-radius: 0 !important;
+}
+
+.list-group-item.active {
+	background-color: var(--bs-primary);
+}
+
+.list-group-item.active > div > span.badge {
+	background-color: #fff !important;
+	color: var(--bs-primary);
+}
+
+.list-group-item.active > div > div > span.badge {
+	background-color: #fff !important;
+	color: var(--bs-primary);
+}
+
+
+.toast-close {
+	position: inherit !important;
+	right: 2px;
+	top: 2px;
+	padding: 0;
+}
+
+.toast-info {
+	background: linear-gradient(135deg, #73a5ff, #5477f5);
+}
+
+.toast-success {
+	background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+	background-color: rgb(5,135,84);
+}
+
+.toast-danger {
+	background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+	background-color: rgb(220,53,69);
+}
+
+.toastify {
+	padding: 12px 30px 12px 12px;
+}
+
+
+.customSelect {
+    padding: 0;
+	border-radius: 0;
+	border: 0;
+}
+
+.customSelect.form-control input.form-control {
+	width: 100%;
+	padding: 0.375rem 0.75rem;
+	border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.customSelect-items {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+	max-height: 400%;
+    border: solid 1px #ccc;
+	z-index: 100;
+	background-color: #fff;
+	box-shadow: 0 1rem 3rem rgba(0,0,0, .175);
+	overflow-y: scroll;
+}
+
+.customSelect-item {
+    padding: 0.375rem 0.75rem;
+}
+
+.customSelect-item:hover {
+    background: #069499;
+    color: #fff;
+}
+
+.spinner-border {
+    position: absolute;
+    border-width: 2px;
+    right: 10px;
+    top: calc(50% - 10px);
+    width: 20px;
+    height: 20px;
+}
+
+.arrow {
+    position: absolute;
+    right: 10px;
+    border: solid var(--bs-primary);
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 4px;
+}
+
+.arrow-up {
+    top: calc(50% - 1px);
+    transform: rotate(-135deg);
+}
+
+.arrow-down {
+    top: calc(50% - 5px);
+    transform: rotate(45deg);
+}
+
+.arrow-hidden {
+    display: none;
+}

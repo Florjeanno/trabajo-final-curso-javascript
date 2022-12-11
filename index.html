@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
+</head>
+<body>
+	<header>
+		<nav id="navMenu" class="navbar navbar-expand-lg navbar-dark navdiv">
+			<div class="container-fluid">
+				<a title="Cotizador Online - Simulá una cotización" class="navbar-brand" href="#">
+					<img src="imagenes/Logo Fj Seguros.png" width="40" height="40" alt="logo">
+					FJ Seguros
+				</a>
+			</div>
+		</nav>
+		<div id="heroHeader" class="container-fluid p-0 bg-white">
+			<div class="d-flex align-items-center h-100">
+				<div class="col-md-8 col-12 p-2 headdiv">
+					<h1 class="h1">COTIZÁ EL MEJOR SEGURO PARA TU VEHICULO</h1>
+				</div>
+			</div>
+		</div>
+	</header>
+	<main class="main-container m-auto p-md-5 py-4 px-2 w-md-75 w-100">
+		<div class="d-flex bg-white h-50 w-100 rounded">
+			<div class="accordion w-100" id="formMain">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingClient">
+						<button id="btn-collapseClient" class="accordion-button tituloscot" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseClient" aria-expanded="true" aria-controls="collapseClient">
+							TUS DATOS
+						</button>
+					</h2>
+					<div id="collapseClient" class="accordion-collapse collapse show" aria-labelledby="headingClient"
+						data-bs-parent="#formMain">
+						<div class="accordion-body">
+							<div id="alert-collapseClient"></div>
+							<label for="clientName" class="form-label">Indicanos tu nombre</label>
+							<div class="input-group mb-3">
+								<span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+								<input type="text" autocomplete="off" id="clientName" name="clientName" class="form-control"
+									placeholder="Nombre y Apellido" aria-label="Nombre del cliente">
+							</div>
+							<label for="clientAge" class="form-label">Edad</label>
+							<div class="input-group mb-3">
+								<span class="input-group-text"><i class="fa-solid fa-calendar"></i></span>
+								<input type="number" min="17" max="85" id="clientAge" name="clientAge" class="form-control" placeholder="Edad"
+									aria-label="Edad del cliente" disabled>
+							</div>
+							<div class="d-flex flex-wrap align-items-stretch justify-content-between">
+								<div class="col-sm-auto col-12 text-center mb-sm-0 mb-3">
+									<button class="btn w-100 btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasHistory" aria-controls="offcanvasHistory">
+										Ver historial
+									</button>
+								</div>
+								<div class="col-sm-auto col-12 text-center">
+									<button id='btn-next-client' type="button" class="btn w-100 btn-primary" onclick="nextStep(validateClientData(), 'collapseVehicle','collapseClient',fillBrandSelect);" disabled>Continuar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingVehicle">
+						<button id="btn-collapseVehicle" class="accordion-button collapsed tituloscot" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseVehicle" aria-expanded="false" aria-controls="collapseVehicle" disabled>
+							DATOS DEL VEHÍCULO
+						</button>
+					</h2>
+					<div id="collapseVehicle" class="accordion-collapse collapse" aria-labelledby="headingVehicle"
+						data-bs-parent="#formMain">
+						<div class="accordion-body">
+							<div id="alert-collapseVehicle"></div>
+							<label for="vehicleBrand" class="form-label">Indicanos la marca</label>
+							<div class="input-group mb-3">
+								<span class="input-group-text"><i class="fas fa-car"></i></span>
+								<div id="brandSelect" class="customSelect form-control">
+									<input id="vehicleBrand" class="form-control" type="text" autocomplete="off" placeholder='Seleccione o escriba la marca'>
+									<div class="spinner-border" role="status" hidden>
+										<span class="visually-hidden">Cargando...</span>
+									</div>
+									<div class="arrow arrow-hidden"></div>
+									<div class='customSelect-items' hidden>
+									</div>
+								</div>
+							</div>
+							<label for="vehicleYear" class="form-label">De que año es?</label>
+							<div class="input-group mb-3">
+								<span class="input-group-text"><i class="fas fa-car"></i></span>
+								<div id="yearSelect" class="customSelect form-control">
+									<input id="vehicleYear" class="form-control" type="text" autocomplete="off" placeholder='Seleccione un año'>
+									<div class="spinner-border" role="status" hidden>
+										<span class="visually-hidden">Cargando...</span>
+									</div>
+									<div class="arrow arrow-hidden"></div>
+									<div class='customSelect-items' hidden>
+									</div>
+								</div>
+							</div>
+							<label for="vehicleModel" class="form-label">Modelo</label>
+							<div class="input-group mb-3">
+								<span class="input-group-text"><i class="fas fa-car-side"></i></span>
+								<div id="modelSelect" class="customSelect form-control">
+									<input id="vehicleModel" class="form-control" type="text" autocomplete="off" placeholder='Seleccione o escriba la marca'>
+									<div class="spinner-border" role="status" hidden>
+										<span class="visually-hidden">Cargando...</span>
+									</div>
+									<div class="arrow arrow-hidden"></div>
+									<div class='customSelect-items' hidden>
+									</div>
+								</div>
+							</div>
+							<label for="vehicleAmount" class="form-label">Suma asegurada</label>
+							<div class="input-group mb-3">
+								<span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+								<input type="text" id="vehicleAmount" name="vehicleAmount" class="form-control"
+									placeholder="1500000" aria-label="Suma asegurada del vehículo" disabled>
+							</div>
+							<div id="alert-vehicleAmount"></div>
+							<label for="vehicleAdjustment" class="form-label">Ajuste automático</label>
+							<select id="vehicleAdjustment" class="form-select mb-3" aria-label="Ajuste automático">
+								<option value="0.15">15%</option>
+								<option value="0.20">20%</option>
+								<option value="0.30">30%</option>
+							</select>
+							<label for="vehicleUsage" class="form-label">Tipo de uso</label>
+							<select id="vehicleUsage" class="form-select mb-3" aria-label="Tipo de uso">
+								<option value="1">Particular</option>
+								<option value="2">Comercial</option>
+							</select>
+							<p class="form-label">Combustible adicional</p>
+							<div class="form-check mb-3">
+								<input class="form-check-input" type="checkbox" value="1" id="vehicleGNC">
+								<label class="form-check-label" for="vehicleGNC">
+									GNC
+								</label>
+							</div>
+							<p class="form-label">Seleccioná las coberturas:</p>
+							<div class="form-check m-auto mb-3">
+								<input class="chkCoverage form-check-input" type="checkbox" id="checkRC" checked="checked" disabled>
+								<label class="form-check-label" for="checkRC">
+									Responsabilidad Civil
+								</label>
+							</div>
+							<div class="form-check m-auto mb-3">
+								<input class="chkCoverage form-check-input" type="checkbox" id="checkTC" disabled>
+								<label class="form-check-label" for="checkTC">
+									Tercero Completo
+								</label>
+							</div>
+							<div class="form-check m-auto mb-3">
+								<input class="chkCoverage form-check-input" type="checkbox" id="checkTR" disabled>
+								<label class="form-check-label" for="checkTR">
+									Todo Riesgo
+								</label>
+							</div>
+							<div class="d-flex flex-wrap align-items-stretch justify-content-between">
+								<div class="col-sm-auto col-12 text-center mb-sm-0 mb-3">
+									<button type="button" class="btn w-100 btn-primary" onclick="previousStep('collapseClient', 'collapseVehicle');">Volver</button>
+								</div>
+								<div class="col-sm-auto col-12 text-center">
+									<button id="btn-next-vehicle" type="button" class="btn w-100 btn-primary" onclick="nextStep(validateVehicleData(), 'collapsePayment','collapseVehicle');" disabled>Continuar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingPayment">
+						<button id="btn-collapsePayment" class="accordion-button collapsed tituloscot" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapsePayment" aria-expanded="false" aria-controls="collapsePayment" disabled>
+							FORMA DE PAGO
+						</button>
+					</h2>
+					<div id="collapsePayment" class="accordion-collapse collapse" aria-labelledby="headingPayment"
+						data-bs-parent="#formMain">
+						<div class="accordion-body">
+							<div class="row row-cols-1 row-cols-md-3 mb-3 g-5 text-center">
+								<div class="col">
+									<div class="card h-100 mb-4 rounded-3 shadow-sm">
+										<div class="card-header py-3">
+											<h4 class="my-0 fw-normal">Efectivo</h4>
+										</div>
+										<div class="card-body">
+											<h1 class="card-title pricing-card-title">6 cuotas</h1>
+											<ul class="list-unstyled mt-3 mb-4">
+												<li>Pagás el total en 6 cuotas sin interés</li>
+												<li>En cualquier rapipago/pagofácil
+													o usando MercadoPago</li>
+											</ul>
+										</div>
+										<div class="card-footer">
+											<button type="button" class="w-100 btn btn-lg btn-outline-primary tituloscot" onclick="quoteAndShow(1);">Cotizar</button>
+										</div>
+										</div>
+								</div>
+								<div class="col">
+									<div class="card h-100 mb-4 rounded-3 shadow-sm">
+										<div class="card-header py-3">
+											<h4 class="my-0 fw-normal">Efectivo</h4>
+										</div>
+										<div class="card-body">
+											<h1 class="card-title pricing-card-title">1 pago</h1>
+											<ul class="list-unstyled mt-3 mb-4">
+												<li>Pagás 1 vez por los 6 meses</li>
+												<li>15% de descuento</li>
+												<li>3 cuotas sin interés usando Tarjeta de crédito y MercadoPago</li>
+											</ul>
+										</div>
+										<div class="card-footer">
+											<button type="button" class="w-100 btn btn-lg btn-primary" onclick="quoteAndShow(2);">Cotizar</button>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="card h-100 mb-4 rounded-3 shadow-sm border-primary">
+										<div class="card-header py-3 text-white bg-primary border-primary cardcot">
+											<h4 class="my-0 fw-normal">Automático</h4>
+										</div>
+										<div class="card-body">
+											<h1 class="card-title pricing-card-title">6 cuotas</h1>
+											<ul class="list-unstyled mt-3 mb-4">
+												<li>Cobro automático usando tu CBU/CVU o Tarjeta de crédito</li>
+												<li>5% de descuento</li>
+												<li>Tu seguro siempre estará al día</li>
+											</ul>
+										</div>
+										<div class="card-footer">
+											<button type="button" class="w-100 btn btn-lg btn-primary" onclick="quoteAndShow(3);">Cotizar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="d-flex flex-wrap align-items-stretch justify-content-between">
+								<div class="col-sm-auto col-12 text-center mb-sm-0 mb-3">
+									<button type="button" class="btn w-100 btn-primary" onclick="previousStep('collapseVehicle', 'collapsePayment');">Volver</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingQuotation">
+						<button id="btn-collapseQuotation" class="accordion-button collapsed tituloscot" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseQuotation" aria-expanded="false" aria-controls="collapseQuotation" disabled>
+							RESUMEN DE COTIZACIÓN
+						</button>
+					</h2>
+					<div id="collapseQuotation" class="accordion-collapse collapse" aria-labelledby="headingQuotation"
+						data-bs-parent="#formMain">
+						<div class="accordion-body">
+							<div id="quotation-data" class="d-flex flex-sm-nowrap flex-wrap g-2 justify-content-center align-items-stretch m-1">
+								<div class="col-sm-4 col-12 placeholder-glow border rounded-start m-1 p-3">
+									<p class="m-0 placeholder-glow">
+										<span class="placeholder col-3"></span>
+										<span class="placeholder col-8"></span>
+										<span class="placeholder col-3"></span>
+										<span class="placeholder col-8"></span>
+										<span class="placeholder col-2"></span>
+										<span class="placeholder col-9"></span>
+									</p>
+								</div>
+								<div class="col-sm-4 col-12 border rounded-end text-rigth m-1 p-3">
+									<p class="m-0 placeholder-glow">
+										<span class="placeholder col-6"></span>
+										<span class="placeholder col-5"></span>
+										<span class="placeholder col-3"></span>
+										<span class="placeholder col-8"></span>
+										<span class="placeholder col-2"></span>
+										<span class="placeholder col-9"></span>
+									</p>
+								</div>
+								<div class="col-sm-4 col-12 border rounded-end text-rigth m-1 p-3">
+									<p class="m-0 placeholder-glow">
+										<span class="placeholder col-6"></span>
+										<span class="placeholder col-5"></span>
+										<span class="placeholder col-3"></span>
+										<span class="placeholder col-8"></span>
+										<span class="placeholder col-2"></span>
+										<span class="placeholder col-9"></span>
+									</p>
+								</div>
+							</div>
+							<div class="d-flex flex-column align-items-stretch">
+								<div id="quotation-list" class="d-flex flex-column align-items-stretch">
+									<div class="d-flex align-items-center border-top border-bottom border-dark p-2">
+										<div class="col-sm-8 col-12">
+											<p class="m-0 placeholder-glow">
+												<span class="placeholder col-4"></span>
+												<span class="placeholder col-10"></span>
+											</p>
+										</div>
+										<div class="col-sm-4 col-12 fw-bold text-end">
+											<p class="m-0 placeholder-glow">
+												<span class="placeholder col-4"></span>
+											</p>
+										</div>
+									</div>
+									<div class="d-flex align-items-center border-top border-bottom border-dark p-2">
+										<div class="ol-sm-8 col-12">
+											<p class="m-0 placeholder-glow">
+												<span class="placeholder col-4"></span>
+												<span class="placeholder col-10"></span>
+											</p>
+										</div>
+										<div class="col-sm-4 col-12 fw-bold text-end">
+											<p class="m-0 placeholder-glow">
+												<span class="placeholder col-4"></span>
+											</p>
+										</div>
+									</div>
+									<div class="d-flex align-items-center border-top border-bottom border-dark p-2">
+										<div class="ol-sm-8 col-12">
+											<p class="m-0 placeholder-glow">
+												<span class="placeholder col-4"></span>
+												<span class="placeholder col-10"></span>
+											</p>
+										</div>
+										<div class="col-sm-4 col-12 fw-bold text-end">
+											<p class="m-0 placeholder-glow">
+												<span class="placeholder col-4"></span>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="d-flex flex-wrap align-items-stretch justify-content-between mt-3">
+								<div class="col-sm-auto col-12 text-center mb-sm-0 mb-3">
+									<button type="button" class="m-1 w-100 btn btn-primary" onclick="previousStep('collapsePayment', 'collapseQuotation');">Volver</button>
+								</div>
+								<div class="col-sm-auto col-12 text-center mb-sm-0 mb-3">
+									<button id="btn-offcanvasHistory" class="m-1 w-100 btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasHistory" aria-controls="offcanvasHistory">
+										Ver historial
+									</button>
+								</div>
+								<div class="col-sm-auto col-12 text-center mb-sm-0 mb-3">
+									<button type="button" id="btn-saveQuotation" class="m-1 w-100 btn btn-primary" onclick="saveQuotation();">Guardar</button>
+								</div>
+								<div class="col-sm-auto col-12 text-center">
+									<button type="button" id="btn-newQuotation" class="m-1 w-100 btn btn-primary" onclick="createNewQuotation();">Nueva</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasHistory" aria-labelledby="offcanvasHistoryLabel">
+			<div class="offcanvas-header">
+				<h5 class="offcanvas-title" id="offcanvasHistoryLabel">Historial</h5>
+				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body">
+				<div id="offcanvas-history" class="d-flex flex-column justify-content-between">
+					<div class="p-2 mb-1 fw-bold">Cotizaciones recientes</div>
+					<div id="offcanvas-history-list" class="list-group mb-2">
+					</div>
+					<div id="offcanvas-saved" class="d-flex flex-column justify-content-between">
+						<div class="p-2 mb-1 fw-bold">Cotizaciones guardadas</div>
+						<div id="offcanvas-saved-list" class="list-group mb-2">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer class="container-fluid px-md-5 px-2 bg-primary text-white footdiv">
+		<div class="p-0 py-2 py-md-3">
+			<div class="d-flex flex-md-row flex-column align-items-stretch justify-content-between">
+				<a title="Cotizador Online - Simulá una cotización" class="navbar-brand" href="#">
+					<img src="imagenes/Logo Fj Seguros.png" width="40" height="40" alt="logo">
+					FJ Seguros
+				</a>
+				<div>
+					cotizador de seguros - trabajo final curso javascript coderhouse
+				</div>
+			</div>
+		</div>
+	</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous" defer></script>
+
+	<script src="appcotizador.js/renderhtml.js" defer></script>
+	<script src="appcotizador.js/storage.js" defer></script>
+	<script src="appcotizador.js/validations.js" defer></script>
+	<script src="appcotizador.js/quoter.js" defer></script>
+	<script src="appcotizador.js/customSelect.js" defer></script>
+	<script src="appcotizador.js/main.js" defer></script> 
+</body>
+</html>
